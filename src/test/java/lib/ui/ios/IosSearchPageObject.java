@@ -2,6 +2,7 @@ package lib.ui.ios;
 
 import io.appium.java_client.AppiumDriver;
 import lib.ui.SearchPageObject;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.HashMap;
 
@@ -24,7 +25,7 @@ public class IosSearchPageObject extends SearchPageObject
         TITLES_AND_DESCRIPTIONS.put("Best of the Super Juniors", "Professional wrestling tournament");
     }
 
-    public IosSearchPageObject(AppiumDriver driver) {
+    public IosSearchPageObject(RemoteWebDriver driver) {
         super(driver);
     }
 }

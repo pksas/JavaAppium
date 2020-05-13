@@ -41,7 +41,7 @@ public class SearchTests extends CoreTestCase
 
         searchPageObject.initSearchInput();
         searchPageObject.typeSearchLine("java");
-        searchPageObject.waitForSearchResult("Object-oriented programming language");
+        searchPageObject.waitForSearchResult("bject-oriented programming language");
     }
 
     @Test

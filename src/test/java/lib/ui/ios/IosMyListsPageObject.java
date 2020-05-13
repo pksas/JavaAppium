@@ -2,6 +2,7 @@ package lib.ui.ios;
 
 import io.appium.java_client.AppiumDriver;
 import lib.ui.MyListsPageObject;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class IosMyListsPageObject extends MyListsPageObject
 {
@@ -12,7 +13,7 @@ public class IosMyListsPageObject extends MyListsPageObject
         SWIPE_ACTION_DELETE_BUTTON = "id:swipe action delete";
     }
 
-    public IosMyListsPageObject(AppiumDriver driver) {
+    public IosMyListsPageObject(RemoteWebDriver driver) {
         super(driver);
     }
 }
