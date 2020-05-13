@@ -15,13 +15,13 @@ public class MVSearchPageObject extends SearchPageObject
         SEARCH_RESULT_BY_SUBSTRING_TPL = "xpath://div[contains(@class,'wikidata-description')][contains(text(),'{SUBSTRING}')]";
         SEARCH_RESULT_ELEMENT = "css:ul.page-list>li.page-summary";
         SEARCH_EMPTY_RESULT_ELEMENT = "css:p.without-results";
-        SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL = "xpath://li[contains(@class,'page-summary')][contains(@title,'{TITLE}')]/a/div[contains(@class,'wikidata-description')][contains(text(),'{DESCRIPTION}')]";
+        SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL = "xpath://*[@resource-id='org.wikipedia:id/page_list_item_container']//*[contains(@text,'{TITLE}')]/..//*[contains(@text,'{DESCRIPTION}')]";
         SEARCH_PLATE_ELEMENT = "id:org.wikipedia:id/search_src_text";
 
         TITLES_AND_DESCRIPTIONS = new HashMap<>();
-        TITLES_AND_DESCRIPTIONS.put("Best", "Disambiguation page providing links to topics that could be referred to by the same search term");
+        TITLES_AND_DESCRIPTIONS.put("Best", "Wikimedia disambiguation page");
         TITLES_AND_DESCRIPTIONS.put("Best Buy", "Consumer electronics retailer");
-        TITLES_AND_DESCRIPTIONS.put("Best of the Super Juniors", "Professional wrestling tournament");
+        TITLES_AND_DESCRIPTIONS.put("Best of the Super Juniors", "NJPW tournament");
     }
 
     public MVSearchPageObject(RemoteWebDriver driver) {
