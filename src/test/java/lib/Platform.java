@@ -1,6 +1,5 @@
 package lib;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -37,7 +36,7 @@ public class Platform {
             return new AndroidDriver(URL, this.getAndroidDesiredCapabilitiesJ());
         } else if (this.isIOS()) {
             return new IOSDriver(URL, this.getIOSDesiredCapabilitiesJ());
-        } else if (this.isMV()) {
+        } else if (this.isMW()) {
             return new ChromeDriver(this.getMVChromeOptions());
         } else {
             throw new Exception("Cannot detect type of the Driver, Platform value: " + this.getPlatformVar());
@@ -54,7 +53,7 @@ public class Platform {
         return isPlatform(PLATFORM_IOS);
     }
 
-    public boolean isMV()
+    public boolean isMW()
     {
         return isPlatform(PLATFORM_MOBILE_WEB);
     }
@@ -91,10 +90,10 @@ public class Platform {
 
         Map<String, Object> mobileEmulations = new HashMap<String, Object>();
         mobileEmulations.put("deviceMetrics", deviceMetrics);
-        mobileEmulations.put("userAgent", "Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19");
+        mobileEmulations.put("userAgent", "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/81.0.4044.138 Mobile/15E148 Safari/604.1");
 
         ChromeOptions chromeOptions =  new ChromeOptions();
-        chromeOptions.addArguments("window-size=360,640");
+        chromeOptions.addArguments("window-size=360,680");
         return chromeOptions;
     }
 
