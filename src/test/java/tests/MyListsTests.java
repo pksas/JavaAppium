@@ -76,26 +76,44 @@ public class MyListsTests extends CoreTestCase
         ArticlePageObject articlePageObject = ArticlePageObjectFactory.get(driver);
         articlePageObject.waitForTitleElement();
         String first_article_title = articlePageObject.getArticleTitle();
-        String second_article_title = "Appium";
+        String second_article_title = "Best Buy";
 
         if (Platform.getInstance().isAndroid()) {
             articlePageObject.addArticleToMyFirstList(name_of_folder);
+        } else  if (Platform.getInstance().isIOS()){
+            articlePageObject.addArticlesToMySaved();
         } else {
+            articlePageObject.clickToAddToMyListArticleButton();
+            AuthorizationPageObject auth = new AuthorizationPageObject(driver);
+            auth.clickAuthButton();
+            auth.enterLoginData(login, password);
+            auth.submitForm();
+
+            articlePageObject.waitForTitleElement();
+
+            assertEquals("We are not on the same page after login,",
+                    first_article_title,
+                    articlePageObject.getArticleTitle());
+
             articlePageObject.addArticlesToMySaved();
         }
 
         articlePageObject.initSearchInput();
-        searchPageObject.typeSearchLine("Appium");
-        searchPageObject.clickByArticleWithSubstring(second_article_title);
+        searchPageObject.typeSearchLine("Best");
+        searchPageObject.clickByArticleWithSubstring("Consumer electronics retailer");
         if (Platform.getInstance().isAndroid()) {
             articlePageObject.addArticleToMyExistigList(name_of_folder);
             articlePageObject.closeArticle();
-        } else {
+        } else  if (Platform.getInstance().isIOS()){
             articlePageObject.addArticlesToMySaved();
             articlePageObject.goToMainWikiPage();
+        } else {
+            articlePageObject.waitForOpeningArticleByTitle(second_article_title);
+            articlePageObject.addArticlesToMySaved();
         }
 
         NavigationUI navigationUI = NavigationUIFactory.get(driver);
+        navigationUI.openNavigation();
         navigationUI.clickMyList();
 
         MyListsPageObject myListsPageObject = MyListsPageObjectFactory.get(driver);
@@ -115,11 +133,13 @@ public class MyListsTests extends CoreTestCase
                     "Cannot find title of remaining article",
                     articlePageObject.getArticleTitle(), second_article_title
             );
-        } else {
+        } else if (Platform.getInstance().isIOS()){
             assertEquals(
                     "Cannot find title of remaining article in Navigation bar",
                     articlePageObject.getArticleNavigationBar(), second_article_title
             );
+        } else {
+            articlePageObject.waitForOpeningArticleByTitle(second_article_title);
         }
     }
 }

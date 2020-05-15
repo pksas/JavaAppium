@@ -8,6 +8,7 @@ abstract public class ArticlePageObject extends MainPageObject
 {
     protected static String
         TITLE,
+        TITLE_BY_NAME_TMP,
         FOOTER_ELEMENT,
         OPTIONS_BUTTON,
         OPTiONS_ADD_TO_MY_LIST_BUTTON,
@@ -33,6 +34,11 @@ abstract public class ArticlePageObject extends MainPageObject
     private static String getFolderNameToSavingElement(String name_of_folder)
     {
         return FOLDER_BY_NAME_TPL.replace("{FOLDER_NAME}", name_of_folder);
+    }
+
+    private static String getTitleLocatorByTitleName(String title_name)
+    {
+        return TITLE_BY_NAME_TMP.replace("{TITLE_NAME}", title_name);
     }
     /* TEMPLATES METHODS */
 
@@ -207,5 +213,11 @@ abstract public class ArticlePageObject extends MainPageObject
     {
         WebElement element = this.waitForElementPresent(NAVIGATION_BAR, "Cannot find navigation bar on the page");
         return element.getAttribute("name");
+    }
+
+    public void waitForOpeningArticleByTitle(String title)
+    {
+        String title_locator_by_article_name = getTitleLocatorByTitleName(title);
+        waitForElementPresent(title_locator_by_article_name, "Cannot find article title with name " + title, 5);
     }
 }

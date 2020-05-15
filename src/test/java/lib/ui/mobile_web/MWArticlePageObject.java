@@ -15,6 +15,8 @@ public class MWArticlePageObject extends ArticlePageObject
         CLOSE_ARTICLE_BUTTON = "css:div.branding-box";
         OPTIONS_REMOVE_FROM_MY_LIST_BUTTON = "css:li#page-actions-watch>a[title='Unwatch']";
         ARTICLE_PAGE_ACTION_MENU = "css:nav.page-actions-menu";
+        SEARCH_BUTTON = "css:button#searchIcon";
+        TITLE_BY_NAME_TMP = "xpath://body/div/div/main/div/div/h1[text()='{TITLE_NAME}']";
     }
 
     public MWArticlePageObject(RemoteWebDriver driver) {
