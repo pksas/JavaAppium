@@ -35,7 +35,7 @@ public class MyListsTests extends CoreTestCase
             articlePageObject.addArticlesToMySaved();
             articlePageObject.goToMainWikiPage();
         } else {
-            articlePageObject.addArticlesToMySaved();
+            articlePageObject.clickToAddToMyListArticleButton();
             AuthorizationPageObject auth = new AuthorizationPageObject(driver);
             auth.clickAuthButton();
             auth.enterLoginData(login, password);
@@ -46,6 +46,8 @@ public class MyListsTests extends CoreTestCase
             assertEquals("We are not on the same page after login,",
                     article_title,
                     articlePageObject.getArticleTitle());
+
+            articlePageObject.addArticlesToMySaved();
         }
 
         NavigationUI navigationUI = NavigationUIFactory.get(driver);

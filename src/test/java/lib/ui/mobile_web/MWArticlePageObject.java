@@ -9,9 +9,11 @@ public class MWArticlePageObject extends ArticlePageObject
     {
         TITLE = "css:#content h1";
         FOOTER_ELEMENT = "css:footer";
+        OPTiONS_ADD_TO_MY_LIST_BUTTON_WHEN_USER_NO_LOGIN = "css:li#page-actions-watch>a[title='Watch']";
         OPTiONS_ADD_TO_MY_LIST_BUTTON = "css:li#page-actions-watch>a[title='Watch']";
+        OPTiONS_ADD_TO_MY_LIST_BUTTON_AFTER_REMOVING = "css:li#page-actions-watch>a[title='Add this page to your watchlist']";
         CLOSE_ARTICLE_BUTTON = "css:div.branding-box";
-        OPTIONS_REMOVE_FROM_MY_LIST_BUTTON = "css:lli#page-actions-watch>a[title='Remove this page from your watchlist']";
+        OPTIONS_REMOVE_FROM_MY_LIST_BUTTON = "css:li#page-actions-watch>a[title='Unwatch']";
         ARTICLE_PAGE_ACTION_MENU = "css:nav.page-actions-menu";
     }
 

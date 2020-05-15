@@ -11,6 +11,7 @@ abstract public class ArticlePageObject extends MainPageObject
         FOOTER_ELEMENT,
         OPTIONS_BUTTON,
         OPTiONS_ADD_TO_MY_LIST_BUTTON,
+        OPTiONS_ADD_TO_MY_LIST_BUTTON_WHEN_USER_NO_LOGIN,
         OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
         ADD_TO_MY_LIST_OVERLAY,
         MY_LIST_NAME_INPUT,
@@ -19,6 +20,7 @@ abstract public class ArticlePageObject extends MainPageObject
         SEARCH_BUTTON,
         FOLDER_BY_NAME_TPL,
         GO_TO_MAIN_PAGE_BUTTON,
+        OPTiONS_ADD_TO_MY_LIST_BUTTON_AFTER_REMOVING,
         ARTICLE_PAGE_ACTION_MENU,
         NAVIGATION_BAR;
 
@@ -167,8 +169,18 @@ abstract public class ArticlePageObject extends MainPageObject
     {
         if (Platform.getInstance().isMW()) {
             this.removeArticleFromSavedIfItAdded();
+        } else {
+            this.waitForElementAndClick(OPTiONS_ADD_TO_MY_LIST_BUTTON,
+                    "Cannot find option to add article to reading list", 15);
         }
-        this.waitForElementAndClick(OPTiONS_ADD_TO_MY_LIST_BUTTON, "Cannot find option to add article to reading list", 15);
+    }
+
+    public void clickToAddToMyListArticleButton()
+    {
+        this.waitForElementAndClick(
+                OPTiONS_ADD_TO_MY_LIST_BUTTON_WHEN_USER_NO_LOGIN,
+                "Cannot click on add to my article list button to open login form",
+                5);
     }
 
     public void removeArticleFromSavedIfItAdded()
@@ -177,9 +189,12 @@ abstract public class ArticlePageObject extends MainPageObject
             this.waitForElementAndClick(OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
                     "Cannot click button to remove an article from saved",
                     1);
-            this.waitForElementPresent(OPTiONS_ADD_TO_MY_LIST_BUTTON,
-                    "Cannot find button to add an article to saved list after removing it from this list before",
+            this.waitForElementAndClick(OPTiONS_ADD_TO_MY_LIST_BUTTON_AFTER_REMOVING,
+                    "Cannot click button to add an article to saved list after removing it from this list before",
                     1);
+        } else {
+            this.waitForElementAndClick(OPTiONS_ADD_TO_MY_LIST_BUTTON,
+                    "Cannot find option to add article to reading list", 15);
         }
     }
 
